@@ -1,5 +1,44 @@
-{% extends "core/base.html" %}
+{% extends "core/base1.html" %}
+
+{% block nav-event %} class="dropdown active" {% endblock %}
 
 {% block container %}
 
+<div class="page-header">
+	<h1>Eventos 
+		<small>
+			{% if search %}
+				eventos com a palavra: {{ search }}
+			{% else %}
+				listagem de eventos
+			{% endif %}
+		</small></h1>
+</div>
+
+{% for ev in events %}
+
+	<div>
+		<h4>
+		<a href="{{ ev.get_absolute_url }}">{{ ev }}</a>
+			
+		</h4>
+			<p>
+			{{ ev.description|truncatewords:"20" }}
+			</p>
+	</div>
+{% empty %}
+
+<div class="alert alert-info">
+
+    <strong>
+
+       {{ search }}?
+
+    </strong>
+
+     Nenhum registro encontrado.
+
+</div>
+
+{% endfor %}
 {% endblock %}

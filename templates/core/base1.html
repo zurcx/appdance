@@ -44,14 +44,14 @@
 
                     <div id="divLogo">
                         <a href="index.html" id="divSiteTitle">ZuRcZ Dance</a><br />
-                        <a href="index.html" id="divTagLine">Aplicativo para ajudar você dançar melhor.</a>
+                        <a href="index.html" id="divTagLine">plicativo para ajudar você dançar melhor.</a>
                     </div>
 
-	            </div>
+                </div>
             </div>   
             <div class="row-fluid">
                 <div class="span12">
-    					
+                        
                     <div id="divMenuRight" class="pull-right">
                     <div class="navbar">
                         <button type="button" class="btn btn-navbar-highlight btn-large btn-primary" data-toggle="collapse" data-target=".nav-collapse">
@@ -59,59 +59,40 @@
                         </button>
                         <div class="nav-collapse collapse">
                             <ul class="nav nav-pills ddmenu">
-                                <li class="dropdown active"><a href="{% url "home" %}">Inicio</a></li>
+                                
+                                <li "{% block nav-home %} {% endblock %}"><a href="{% url "home" %}">Início</a></li>
+                                {% block nav-dance %} {% endblock %}
                                 <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle">Dança <b class="caret"></b></a>
+                                    <a href="page.html" class="dropdown-toggle">Dança <b class="caret"></b></a>
                                     <ul class="dropdown-menu">
-
-
-                                    	<li class="dropdown">
-                                            <a href="#" class="dropdown-toggle">Dropdown Item &nbsp;&raquo;</a>
+                                        <li "{% block nav-event %} {% endblock %}">
+                                            <a href="{% url "events" %}" class="dropdown-toggle">Eventos &nbsp;&raquo;</a>
                                             <ul class="dropdown-menu sub-menu">
-                                                <li><a href="#">Dropdown Item</a></li>
-                                                <li><a href="#">Dropdown Item</a></li>
-                                                <li><a href="#">Dropdown Item</a></li>
+                                                <li><a href="#">Baile</a></li>
+                                                <li><a href="#">WorkShop</a></li>
+                                                <li><a href="#">Intensivo</a></li>
                                             </ul>
                                         </li>
-
-                                        <li class="dropdown">
-                                            <a href="{% url "events" %}" class="dropdown-toggle"Eventos &nbsp;&raquo;</a>
-                                            <ul class="dropdown-menu sub-menu">
-                                                <li><a href="#">Bailes</a></li>
-                                                <li><a href="#">Forum</a></li>
-                                                <li><a href="#">Intensivos</a></li>
-                                            </ul>
-                                        </li>
-
-
                                         <li><a href="#">Ritimos</a></li>
                                         <li><a href="#">Passos</a></li>
+                                        <li><a href="#">Blog</a></li>
                                     </ul>
+
+                                <li "{% block nav-contact %} {% endblock %}"><a href="{% url "contact" %}">Contato</a></li>
                                 </li>
-                                <li class="dropdown"><a href="{% url "contact" %}">Contato</a></li>
+
+                                    <form class"navbar-search pull-right" action="{% url "events" %}" method="get">
+                                        <input type="text" class="search-query span4" placeholder="Pesquisar" name="search"></input>
+                                    </form>
                             </ul>
                         </div>
                     </div>
                     </div>
 
-	            </div>
-            </div>
-
-            {% block container %}
-
-            {% endblock %}
-
-            <div class="row-fluid">
-                <div class="span12">
-    
-                    <div id="headerSeparator"></div>
-
-                    
-
-                    <div id="headerSeparator2"></div>
-        
                 </div>
             </div>
+
+           
    
     </div>
 
@@ -121,21 +102,14 @@
 
             
 
-            <div class="row-fluid">
+            
 
-                <div class="span12" id="divMain">
 
-                    
+                    {% block container %}        
 
-                    <br />
+                    {% endblock %}
 
-                    <div class="row-fluid">
-                        
-                    </div>  
 
-                </div>
-
-            </div>
 
             <div id="footerInnerSeparator"></div>
         </div>
@@ -150,7 +124,7 @@
             <div class="row-fluid">
                 <div class="span3" id="footerArea1">
                 
-                    <h3>About Company</h3>
+                    <h3>Sobre a ZuRcZ</h3>
 
                     <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s.</p>
                     
@@ -164,7 +138,7 @@
                 </div>
                 <div class="span3" id="footerArea2">
 
-                    <h3>Recent Blog Posts</h3> 
+                    <h3>Posts Recentes</h3> 
                     <p>
                         <a href="#" title="">Lorem Ipsum is simply dummy text</a><br />
                         <span style="text-transform:none;">2 hours ago</span>
@@ -196,23 +170,23 @@
                     <ul id="contact-info">
                     <li>                                    
                         <i class="general foundicon-phone icon"></i>
-                        <span class="field">Phone:</span>
+                        <span class="field">Telefone:</span>
                         <br />
-                        (123) 456 7890 / 456 7891                                                                      
+                        (48) 9121 7271                                                            
                     </li>
                     <li>
                         <i class="general foundicon-mail icon"></i>
                         <span class="field">Email:</span>
                         <br />
-                        <a href="mailto:info@yourdomain.com" title="Email">info@yourdomain.com</a>
+                        <a href="{% url "contact" %}" title="Email">luizfabiodacruz@gmail.com</a>
                     </li>
                     <li>
                         <i class="general foundicon-home icon" style="margin-bottom:50px"></i>
-                        <span class="field">Address:</span>
+                        <span class="field">Endereço:</span>
                         <br />
-                        123 Street<br />
-                        12345 City, State<br />
-                        Country
+                        Jacob Ferreira de Melo, 285<br />
+                        Forquilhas, São José<br />
+                        CEP 88107-705<br />
                     </li>
                     </ul>
 
@@ -223,14 +197,14 @@
             <div class="row-fluid">
                 <div class="span12">
                     <p class="copyright">
-                        Copyright © 2013 Your Company. All Rights Reserved. Thanks to <a href="http://www.oswt.co.uk/">oswt</a>
+                        Copyright © 2013 ZuRcZ Corporation. All Rights Reserved. Thanks to <a href="http://www.zurcz.com.br">zurcz</a>
                     </p>
 
                     <p class="social_bookmarks">
                         <a href="#"><i class="social foundicon-facebook"></i> Facebook</a>
-			<a href="https://twitter.com/oswt"><i class="social foundicon-twitter"></i> Twitter</a>
-			<a href="#"><i class="social foundicon-pinterest"></i> Pinterest</a>
-			<a href="#"><i class="social foundicon-rss"></i> Rss</a>
+            <a href="https://twitter.com/oswt"><i class="social foundicon-twitter"></i> Twitter</a>
+            <a href="#"><i class="social foundicon-pinterest"></i> Pinterest</a>
+            <a href="#"><i class="social foundicon-rss"></i> Rss</a>
                     </p>
                 </div>
             </div>
@@ -240,14 +214,14 @@
 </div>
 <br /><br /><br />
 
-<script src="scripts/jquery-1.8.2.min.js" type="text/javascript"></script> 
-<script src="scripts/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-<script src="scripts/default.js" type="text/javascript"></script>
+<script src="{{ STATIC_URL }}scripts/jquery-1.8.2.min.js" type="text/javascript"></script> 
+<script src="{{ STATIC_URL }}scripts/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="{{ STATIC_URL }}scripts/default.js" type="text/javascript"></script>
 
 
-<script src="scripts/camera/scripts/camera.min.js" type="text/javascript"></script>
-<script src="scripts/easing/jquery.easing.1.3.js" type="text/javascript"></script>
-<script src="scripts/camera/scripts/jquery.mobile.customized.min.js" type="text/javascript"></script>
+<script src="{{ STATIC_URL }}scripts/camera/scripts/camera.min.js" type="text/javascript"></script>
+<script src="{{ STATIC_URL }}scripts/easing/jquery.easing.1.3.js" type="text/javascript"></script>
+<script src="{{ STATIC_URL }}scripts/camera/scripts/jquery.mobile.customized.min.js" type="text/javascript"></script>
 <script type="text/javascript">function startCamera() {$('#camera_wrap').camera({ fx: 'scrollLeft', time: 2000, loader: 'none', playPause: false, height: '65%', pagination: true });}$(function(){startCamera()});</script>
 
 

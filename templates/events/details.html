@@ -1,0 +1,32 @@
+{% extends "core/base1.html" %}
+
+{% block container %}
+
+<div class="page-header">
+	<h1>{{ event }}</h1>
+</div>
+<h4>Descrição do Evento</h4>
+{{ event.description|linebreaks  }}
+<div class="page-header">
+	<h2>Comentários</h2>
+</div>
+{% for comment in event.comments.all %}
+
+{% empty %}
+<div class="alert alert-info">
+	Nenhum comentário encontrado.
+</div>
+{% endfor %}
+<div>
+<h4>Adicionar comentário</h4>
+	<form class="form-horizontal" method="post" action="">
+		{% include "core/forms.html" with form=comment_form %}
+		<div class="form-actions">
+			<button type="submit" class="btn btn-primary">
+				Comentar
+			</button>
+		</div>
+	</form>
+</div>
+
+{% endblock %}

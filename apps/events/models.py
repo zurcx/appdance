@@ -1,6 +1,7 @@
 #encoding: utf-8
 
 from django.db import models
+from django.core.urlresolvers import reverse
 
 # Create your models here.
 
@@ -24,6 +25,10 @@ class Event(models.Model):
 	def comments_count(self):
 		return self.comments.count()
 	comments_count.short_description = u"Número de comentários"
+
+	@models.permalink
+	def get_absolute_url(self):
+		return ('events_details', (), {'pk':self.pk})
 
 
 	def __unicode__(self):

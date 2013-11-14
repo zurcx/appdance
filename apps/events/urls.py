@@ -5,8 +5,9 @@ from django.conf.urls import patterns, include, url
 from .views import index
 
 
-urlpatterns = patterns('',
+urlpatterns = patterns('apps.events.views',
 
-	url(r'^$', "apps.events.views.index", name="events"),
+	url(r'^$', "index", name="events"),
+	url(r'^(?P<pk>\d+)/$', "details", name="events_details"),
 
 )

@@ -7,7 +7,7 @@ from unipath import Path
 PROJECT_ROOT = Path(__file__).ancestor(2)
 
 ADMINS = (
-    # ('Your Name', 'your_email@example.com'),
+    ('Luiz Cruz', 'luizfabiodacruz@gmail.com'),
 )
 
 MANAGERS = ADMINS
@@ -134,6 +134,7 @@ INSTALLED_APPS = (
 
     'apps.core',
     'apps.events',
+    
 )
 
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'
@@ -166,3 +167,15 @@ LOGGING = {
         },
     }
 }
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# email pelo gmail
+
+# DEFAULT_FROM_EMAIL = 'Luiz Cruz <luizfabiodacruz@gmail.com>'
+# EMAIL_USER_TLS = True
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_HOST_USER = 'luizfabiodacruz@gmail.com'
+# EMAIL_HOST_PASSWORD = "DiC1703195!"
+# EMAIL_PORT = 587
