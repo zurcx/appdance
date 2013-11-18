@@ -47,6 +47,7 @@ class Comment(models.Model):
 	email		= models.EmailField(verbose_name=u"E-mail", )
 	event 		= models.ForeignKey(Event, verbose_name="Evento",
 									related_name=u"comments")
+	website 	= models.URLField(verbose_name=u"Perfil do Facebook", blank=True)
 	text 		= models.TextField(verbose_name=u"Texto")
 	create_on	= models.DateTimeField(verbose_name=u"Criado em", auto_now_add=True)
 
