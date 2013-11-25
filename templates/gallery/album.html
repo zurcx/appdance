@@ -1,0 +1,24 @@
+{% extends "core/base1.html" %}
+
+{% block container %}
+<div class="page-header">
+	<h1>{{ album }}
+		{% if album.event %}
+		- {{ album.event }}
+		{% endif %}
+	</h1>
+</div>
+
+<h3>Fotos do Album</h3>
+<div class="row">
+	<ul class="thumbnail">
+		{% for photo in album.photo_set.all %}
+		<li class="span3">
+			<a href="{{ photo.image.url }}" class="thumbnail">
+				<img src="{{ photo.image.url }}" />
+			</a>
+		</li>
+		{% endfor %}
+	</ul>
+</div>
+{% endblock %}

@@ -1,5 +1,7 @@
 {% extends "core/base1.html" %}
 
+{% load paginator_tags %}
+
 {% block nav-event %} class="dropdown active" {% endblock %}
 
 {% block container %}
@@ -15,7 +17,7 @@
 		</small></h1>
 </div>
 
-{% for ev in events %}
+{% for ev in page_obj.object_list %}
 
 	<div>
 		<h4>
@@ -41,4 +43,7 @@
 </div>
 
 {% endfor %}
+
+{% paginate request paginator page_obj %}
+
 {% endblock %}

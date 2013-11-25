@@ -1,5 +1,6 @@
 #encoding: utf-8
 
+from django.contrib.auth.models import User 
 from django.db import models
 from django.core.urlresolvers import reverse
 
@@ -15,12 +16,14 @@ class Event(models.Model):
 	)
 
 	name		= models.CharField(verbose_name=u"Nome", max_length=200)
+	user 		= models.ForeignKey(User, verbose_name=u"Usuário", null=True, blank=True)
 	type		= models.IntegerField(verbose_name=u"Tipo de Evento", choices=TYPE_CHOICES)
 	description	= models.TextField(verbose_name=u"description", blank=True)
 	create_on	= models.DateTimeField(verbose_name=u'Criado em ', auto_now_add=True)
 	link		= models.URLField(verbose_name=u"Link", blank=True)
 	public		= models.BooleanField(verbose_name=u"Público?",
 									  default=True)
+	event_date	= models.DateField(verbose_name="Data do evento", null=True, blank=True)
 
 	def comments_count(self):
 		return self.comments.count()
@@ -54,6 +57,6 @@ class Comment(models.Model):
 	def __unicode__(self):
 		return self.name
 
-	class META:
+	class Meta:
 		verbose_name 		= u"Comentário"
 		verbose_name_plural	= u"Comentários"

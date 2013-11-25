@@ -44,11 +44,13 @@
 
                     <div id="divLogo">
                         <a href="index.html" id="divSiteTitle">ZuRcZ Dance</a><br />
-                        <a href="index.html" id="divTagLine">plicativo para ajudar você dançar melhor.</a>
+                        <a href="index.html" id="divTagLine">Aplicativo para ajudar você dançar melhor.</a>
                     </div>
 
                 </div>
-            </div>   
+            </div>
+            <br>   
+            <br>   
             <div class="row-fluid">
                 <div class="span12">
                         
@@ -78,12 +80,36 @@
                                         <li><a href="#">Blog</a></li>
                                     </ul>
 
+
                                 <li "{% block nav-contact %} {% endblock %}"><a href="{% url "contact" %}">Contato</a></li>
                                 </li>
-
-                                    <form class"navbar-search pull-right" action="{% url "events" %}" method="get">
-                                        <input type="text" class="search-query span6" placeholder="Pesquisar" name="search"></input>
+                                <li>
+                                    <form class"navbar-search pull-left" action="{% url "events" %}" method="get">
+                                        <input type="text" class="search-query span10" placeholder="Pesquisar no site" name="search"></input>
                                     </form>
+                                </li>
+
+                                {% if user.is_authenticated %}
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle">Bem vindo! {{ user.username }} <b class="caret"></b></a>
+                                    <ul class="dropdown-menu sub-menu">
+                                        <li><a href="{% url "logout" %}">Sair</a></li>
+                                        <li><a href="{% url "logout" %}">Sair</a></li>
+                                        
+                                    </ul>
+                                    
+                                </li>
+                                {% else %}
+                                <li class="dropdown">
+                                    <a href="{% url "login" %}" class="dropdown-toggle">Entrar</a>
+                                        
+                                    </ul>
+                                    
+                                </li>
+                                {% endif %}
+
+
+
                             </ul>
                         </div>
                     </div>

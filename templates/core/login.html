@@ -1,0 +1,15 @@
+{% extends "core/base1.html" %}
+
+{% block container %}
+<div class="page-header">
+	<h1>Entrar <small>Informa seu usuário e senha.</small></h1>
+</div>
+<form action="" method="post" class="form-horizontal">
+	{% include "core/forms.html" %}
+	<div class="control-label">
+		<button type="submit" class="btn btn-primary">
+			Entrar
+		</button>
+	</div>
+</form>
+{% endblock %}
