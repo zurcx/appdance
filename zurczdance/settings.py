@@ -146,6 +146,7 @@ INSTALLED_APPS = (
     # 'django.contrib.admindocs',
 
     'south',
+    'sorl.thumbnail',
 
     #My Apps
 
@@ -153,6 +154,7 @@ INSTALLED_APPS = (
     'apps.events',
     'apps.gallery',
     'apps.accounts',
+    'apps.dances',
     'apps.core.templatetags.paginator_tags',
     
 )

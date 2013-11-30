@@ -2,7 +2,7 @@
 	<div class="pagination">
 		<ul>
 			{% for page in paginator.page_range %}
-			<li{% if page_obj.number == page%} class="active" {% endif%}>
+			<li{% if page_obj.numbrmer == page%} class="active" {% endif%}>
 				<a href="?page={{ page }}{{ getvars }}">{{ page }}</a>
 			</li>
 			{% endfor %}

@@ -1,0 +1,57 @@
+{% extends "core/base1.html" %}
+
+{% load paginator_tags %}
+
+{% block nav_rhythm %} class="active"{% endblock %}
+
+{% block container %}
+
+<div class="page-header">
+        <h1><a href="#">{{ rhythm }}</a></h1>
+</div>
+
+<div class="page-header>">
+
+        <h2>Descrição de Rítmo</h2>
+
+</div>
+<br>        
+
+
+{{ rhythm.description|linebreaks }}
+
+<div class="page-header"></div>
+
+        <h3>Passos do Rítmo - <strong>{{ rhythm }}</strong></h3><br/>
+<br>
+        {% if rhythm.dancesteps.all %}
+        <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Passos</th>
+            <th>Nível</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for step in rhythm.dancesteps.all %}
+          <tr>
+            <td>{{ step.name }}</td>
+            <td>{{ step.level }}</td>
+          </tr>
+        {% endfor %}
+        
+        {% else %}
+                <div class="alert alert-info" >
+                        Nenhum passo cadastrado para este Rítmo.
+                </div>
+        {% endif %}
+        </tbody>
+      </table>
+
+
+        <br/>
+
+{% paginate request paginator page_obj %}
+
+
+{% endblock %}

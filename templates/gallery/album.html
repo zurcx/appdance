@@ -13,11 +13,11 @@
 <div class="row">
 	<ul class="thumbnail">
 		{% for photo in album.photo_set.all %}
-		<li class="span3">
+		<ul class="span3">
 			<a href="{{ photo.image.url }}" class="thumbnail">
 				<img src="{{ photo.image.url }}" />
 			</a>
-		</li>
+		</ul>
 		{% endfor %}
 	</ul>
 </div>

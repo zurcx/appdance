@@ -63,9 +63,9 @@
                             <ul class="nav nav-pills ddmenu">
                                 
                                 <li "{% block nav-home %} {% endblock %}"><a href="{% url "home" %}">Início</a></li>
-                                {% block nav-dance %} {% endblock %}
+                                
                                 <li class="dropdown">
-                                    <a href="page.html" class="dropdown-toggle">Dança <b class="caret"></b></a>
+                                    <a href="{% url "dances" %}" class="dropdown-toggle">Dança <b class="caret"></b></a>
                                     <ul class="dropdown-menu">
                                         <li class="dropdown">
                                             <a href="{% url "events" %}" class="dropdown-toggle">Eventos &nbsp;&raquo;</a>
@@ -75,7 +75,7 @@
                                                 <li><a href="#">Intensivo</a></li>
                                             </ul>
                                         </li>
-                                        <li><a href="#">Ritimos</a></li>
+                                        <li><a href="{% url "rhythms" %}">Rítmos</a></li>
                                         <li><a href="#">Passos</a></li>
                                         <li><a href="#">Blog</a></li>
                                     </ul>

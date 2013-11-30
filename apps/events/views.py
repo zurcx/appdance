@@ -8,30 +8,53 @@ from django.core.paginator import (Paginator , PageNotAnInteger, EmptyPage)
 from models import Event
 from forms import CommentForm
 
+from django.views.generic import ListView
 
-def index(request):
+class EventListView(ListView):
+
 	template_name = 'events/index.html'
-	context = {}
-	events = Event.objects.all()
-	search = request.GET.get('search', '')
-	if search:
-		events = events.filter(Q(name__icontains=search) \
-							 | Q(description__icontains=search))
+	paginate_by = 1
 
-	paginator = Paginator(events, 1)
-	page = request.GET.get('page', 1)
-	try:
-		page_obj = paginator.page(page)
-	except PaginatorNotAnInteger:
-		page_obj = paginator.page(1)
-	except EmptyPage:
-		page_obj = paginator.page(page.num_pages)
+	def get_queryset(self):
+		events = Event.objects.all()
+		search = self.request.GET.get('search', '')
+		if search:
+			events = events.filter(Q(name__icontains=search) \
+								 | Q(description__icontains=search))
+		return events
 
-	context['paginator'] = paginator
-	context['page_obj'] = page_obj
-	context['events'] = events
-	context['search'] = search
-	return render(request, template_name, context)
+	def get_context_data(self, **kwargs):
+		context = super(EventListView, self).get_context_data(**kwargs)
+		context['search'] = self.request.GET.get('search', '')
+		return context
+
+
+
+
+
+# def index(request):
+# 	template_name = 'events/index.html'
+# 	context = {}
+# 	events = Event.objects.all()
+# 	search = request.GET.get('search', '')
+# 	if search:
+# 		events = events.filter(Q(name__icontains=search) \
+# 							 | Q(description__icontains=search))
+
+# 	paginator = Paginator(events, 1)
+# 	page = request.GET.get('page', 1)
+# 	try:
+# 		page_obj = paginator.page(page)
+# 	except PaginatorNotAnInteger:
+# 		page_obj = paginator.page(1)
+# 	except EmptyPage:
+# 		page_obj = paginator.page(page.num_pages)
+
+# 	context['paginator'] = paginator
+# 	context['page_obj'] = page_obj
+# 	context['events'] = events
+# 	context['search'] = search
+# 	return render(request, template_name, context)
 
 def details(request, pk):
 	event = get_object_or_404(Event, pk=pk)

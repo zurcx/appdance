@@ -26,6 +26,8 @@
 </div>
 {% for comment in event.comments.all %}
 
+{{ comment.name }}
+
 {% empty %}
 <div class="alert alert-info">
 	Nenhum comentário encontrado.
