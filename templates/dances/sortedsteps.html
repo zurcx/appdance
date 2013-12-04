@@ -1,0 +1,48 @@
+{% extends "core/base1.html" %}
+
+{% load paginator_tags %}
+
+{% block nav_rhythm %} class="active"{% endblock %}
+
+{% block container %}
+
+<div class="page-header">
+        <h1><a href="#">{{ rhythm }}</a></h1>
+</div>
+
+<div class="page-header>">
+
+        <h2>Descrição de Rítmo</h2>
+
+</div>
+<br>        
+
+
+{{ rhythm.description|linebreaks }}
+
+<div class="page-header"></div>
+
+
+
+<form action="sort" method="get">
+    <select>
+        <option value="1">Sequencia de 1 passo</option>
+        <option value="2">Sequencia de 2 passos</option>
+        <option value="3">Sequencia de 3 passos</option>
+        <option value="4">Sequencia de 4 passos</option>
+        <option value="5">Sequencia de 5 passos</option>
+    </select> 
+    <input type="text" value="Select">  
+
+
+
+        
+
+        <h3>Passos do Rítmo - <strong>{{ rhythm }}</strong></h3><br/>
+<br>
+        {% for item in items %}
+        
+        passo sorteado: {{ item }} <br>
+
+        {% endfor %}
+{% endblock %}

@@ -25,7 +25,9 @@
                 <img src="{{ STATIC_URL }}images/danca-default.jpg" >
             {% endthumbnail %}
                     <div class="caption">
-                            <h5><a href="{{ rh.get_absolute_url }}"><strong>{{ rh }}</strong></a></h5>
+                            <h6><a href="{{ rh.get_absolute_url }}"><strong>{{ rh }}</strong></a></h6>
+
+                            <a href="{% url "rhythms_sorted" rh.pk %}">sortear</a>
                     </div>
                 </div>
         </li>

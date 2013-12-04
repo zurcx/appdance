@@ -41,6 +41,37 @@ class RhythmDetailsView(DetailView):
 		return context
 
 
+class DanceStepDetailView(DetailView):
+
+	template_name = "dances/rhythm_step_sorted.html"
+
+	def get_queryset(self):
+		return Rhythm.objects.all()
+
+	def get_context_data(self, **kwargs):
+		context = super(DanceStepDetailView, self).get_context_data(**kwargs)
+		return context
+
+
+def dancestep_sorted(request, pk):
+	rhythm = get_object_or_404(Rhythm, pk=pk)
+	template_name = "dances/sortedsteps.html"
+	rhythm_slug = rhythm.slug
+	n = 4
+	rhythm = get_object_or_404(Rhythm, slug=rhythm_slug)
+	items = list(rhythm.dancesteps.all().order_by('?')[:n])
+	context = {
+		'items':items,
+		'rhythm':rhythm,
+	}
+
+	return render(request, template_name, context)
+
+		
+
+
+
+
 
 
 # def details(request, pk):

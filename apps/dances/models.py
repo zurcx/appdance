@@ -6,7 +6,10 @@ from django.core.urlresolvers import reverse
 from django.db.models import signals
 from django.template.defaultfilters import slugify
 
-from signals import create_slug
+from uuslug import uuslug
+
+
+#from signals import create_slug
 
 class Rhythm(models.Model):
     name = models.CharField(verbose_name=u'Nome', max_length=150,
@@ -30,12 +33,19 @@ class Rhythm(models.Model):
     public = models.BooleanField(verbose_name=u'Público ?',
                                  default=True)
 
-    def save(self):
-        if not self.id:
-            self.slug = slugify(self.name).replace('_','')
-            while Rhythm.objects.filter(slug = self.slug):
-                self.slug += '-1'
-        super(Rhythm, self).save()
+    # Novo
+    def save(self, *args, **kwargs):
+        #self.slug = uuslug(self.name, instance=self, separator="_")
+        self.slug = uuslug(self.name, instance=self)
+        super(Rhythm, self).save(*args, **kwargs)
+
+    # Antigo.
+    # def save(self):
+    #     if not self.id:
+    #         self.slug = slugify(self.name).replace('_','')
+    #         while Rhythm.objects.filter(slug = self.slug):
+    #             self.slug += '-1'
+    #     super(Rhythm, self).save()
 
     def dancestep_count(self):
         return self.dancesteps.count()
@@ -55,7 +65,7 @@ class Rhythm(models.Model):
         verbose_name_plural = u'Rítmos'
         ordering =['name']
 
-signals.post_save.connect(create_slug, sender=Rhythm)
+#signals.post_save.connect(create_slug, sender=Rhythm)
 
 class Level(models.Model):
     name = models.CharField(verbose_name=u'Nome', max_length=150,

@@ -8,7 +8,7 @@ from .models import Rhythm, DanceStep, Level
 
 class RhythmAdmin(admin.ModelAdmin):
 
-	list_display = ['name', 'public', 'dancestep_count']
+	list_display = ['name', 'public', 'slug', 'dancestep_count']
 	search = 'name'
 
 class DanceStepAdmin(admin.ModelAdmin):
